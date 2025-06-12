@@ -1,0 +1,27 @@
+name: Greetings
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: "Hey thanks for the issue, we'll address this topic carefully. Any other question please contact the admins"
+          pr-message: "Thanks for contributing to Opaleiros project, please feel free to help to grow this project, you can see more in [Opaleiros twitter](https://x.com/MrPunkSama)"
+  label:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+
